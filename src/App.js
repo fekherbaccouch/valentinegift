@@ -509,19 +509,6 @@ export default function App() {
                   <h1 style={styles.bigTitle}>Happy Valentine&apos;s Day, {SETTINGS.name} ❤️</h1>
                   <p style={styles.subtitle}>click here for a surprise made with love 💌</p>
 
-                  <div style={styles.bubuBigWrap}>
-                    <img
-                      src={BUBU_DUDU_SRC}
-                      alt="Bubu and Dudu kissing"
-                      style={styles.bubuBigImg}
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                        const fallback = e.currentTarget.nextSibling;
-                        if (fallback) fallback.style.display = "block";
-                      }}
-                    />
-                    <div style={{ ...styles.bubuFallback, display: "none" }}>🐼💋🐻 bubu dudu</div>
-                  </div>
 
                   <section style={styles.yesNoWrap}>
                     <div style={{ textAlign: "center", color: "#7d2d2d", fontWeight: 800, fontSize: "1.1rem", fontFamily: HAND_FONT }}>
