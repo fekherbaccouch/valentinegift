@@ -534,6 +534,19 @@ export default function App() {
                       CLICK HERE, AMORE 💖
                     </motion.button>
 
+                  <div style={styles.bubuBigWrap}>
+                    <img
+                      src={BUBU_DUDU_SRC}
+                      alt="Bubu and Dudu kissing"
+                      style={styles.bubuBigImg}
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                        const fallback = e.currentTarget.nextSibling;
+                        if (fallback) fallback.style.display = "block";
+                      }}
+                    />
+                    <div style={{ ...styles.bubuFallback, display: "none" }}>🐼💋🐻 bubu dudu</div>
+                  </div>
                     <div style={styles.loveStickers}>
                       <span style={{ ...styles.sticker, animationDelay: "0s" }}>you + me</span>
                       <span style={{ ...styles.sticker, animationDelay: ".4s" }}>forever</span>
