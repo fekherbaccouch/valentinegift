@@ -4,7 +4,7 @@ import { Flower2, Heart, Sparkles, Star } from "lucide-react";
 
 const SETTINGS = {
   name: "Amore",
-  date: "February 14, 2026",
+  date: "14 February 2026",
 };
 
 const LETTER = {
@@ -17,7 +17,7 @@ const LETTER = {
     "Until then, you have my whole heart. Always. 💕",
   ],
   signoff: "Forever yours,",
-  signature: "JASMINE",
+  signature: "Jasmine",
 };
 
 const BUBU_DUDU_SRC = "/bubu-dudu.jpg";
@@ -83,16 +83,20 @@ export default function App() {
     setReplyText("");
   };
 
-  useEffect(() => {
-    if (step !== 2) return;
-    const timer = setTimeout(() => nextStep(3, "Now flowers and love...", 1500), 18000);
-    return () => clearTimeout(timer);
-  }, [step]);
-
   const letterAllWords = useMemo(
     () => [LETTER.title, ...LETTER.paragraphs].join(" ").split(" "),
     []
   );
+
+  useEffect(() => {
+    if (step !== 2) return;
+    const revealDurationMs = letterAllWords.length * 140;
+    const timer = setTimeout(
+      () => nextStep(3, "Now flowers and love...", 1500),
+      revealDurationMs + 5000
+    );
+    return () => clearTimeout(timer);
+  }, [step, letterAllWords.length]);
 
   useEffect(() => {
     if (step !== 2) return;
@@ -524,10 +528,13 @@ export default function App() {
                       Will You Be My Valentine?
                     </div>
 
-                    <button
+                    <motion.button
                       type="button"
                       style={styles.clickHere}
                       onClick={onYes}
+                      initial={{ opacity: 0, scale: 0.85, y: 12 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = "scale(1.08) rotate(-2deg)";
                         e.currentTarget.style.boxShadow = "0 22px 34px rgba(200,21,21,0.42)";
@@ -538,7 +545,7 @@ export default function App() {
                       }}
                     >
                       CLICK HERE, AMORE 💖
-                    </button>
+                    </motion.button>
 
                     <div style={styles.loveStickers}>
                       <span style={{ ...styles.sticker, animationDelay: "0s" }}>you + me</span>
